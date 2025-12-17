@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: MobileMenu
- * Plugin URI: https://profiles.wordpress.org/sachinsolanki/
+ * Plugin URI: https://github.com/tachukadi/MobileMenu
  * Description: A modern, animated, mobile-only navigation menu with extensive customization options
  * Version: 1.0.0
  * Requires at least: 5.8
  * Requires PHP: 8.2
  * Author: Sachin Solanki
- * Author URI: https://profiles.wordpress.org/sachinsolanki/
+ * Author URI: https://github.com/tachukadi/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: mobilemenu
