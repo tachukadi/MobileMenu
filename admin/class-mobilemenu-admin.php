@@ -121,7 +121,8 @@ class MobileMenu_Admin {
         // Boolean values
         $boolean_fields = [
             'enabled', 'enable_mobile', 'enable_tablet', 'close_on_outside_click',
-            'close_on_anchor_click', 'prevent_body_scroll', 'show_close_button', 'blur_background'
+            'close_on_anchor_click', 'prevent_body_scroll', 'show_close_button', 
+            'blur_background', 'open_submenus_by_default'
         ];
         
         foreach ($boolean_fields as $field) {
@@ -133,11 +134,12 @@ class MobileMenu_Admin {
         $sanitized['tablet_breakpoint'] = absint($input['tablet_breakpoint'] ?? 1024);
         $sanitized['menu_font_size'] = absint($input['menu_font_size'] ?? 18);
         $sanitized['animation_speed'] = absint($input['animation_speed'] ?? 300);
+        $sanitized['logo_width'] = absint($input['logo_width'] ?? 150);
         
         // Color values
         $color_fields = [
             'hamburger_icon_color', 'hamburger_bg_color', 'menu_bg_color',
-            'menu_text_color', 'menu_icon_color'
+            'menu_text_color', 'menu_link_color', 'menu_link_hover_color', 'menu_icon_color'
         ];
         
         foreach ($color_fields as $field) {
@@ -148,6 +150,8 @@ class MobileMenu_Admin {
         $sanitized['menu_bg_gradient'] = sanitize_text_field($input['menu_bg_gradient'] ?? '');
         $sanitized['hamburger_position'] = sanitize_text_field($input['hamburger_position'] ?? 'top-right');
         $sanitized['icon_position'] = sanitize_text_field($input['icon_position'] ?? 'above');
+        $sanitized['icon_vertical_position'] = sanitize_text_field($input['icon_vertical_position'] ?? 'center');
+        $sanitized['menu_alignment'] = sanitize_text_field($input['menu_alignment'] ?? 'center');
         $sanitized['open_animation'] = sanitize_text_field($input['open_animation'] ?? 'slide-left');
         $sanitized['close_animation'] = sanitize_text_field($input['close_animation'] ?? 'slide-left');
         $sanitized['submenu_animation'] = sanitize_text_field($input['submenu_animation'] ?? 'accordion');
@@ -155,6 +159,9 @@ class MobileMenu_Admin {
         $sanitized['default_icon_type'] = sanitize_text_field($input['default_icon_type'] ?? 'dashicons');
         $sanitized['default_icon'] = sanitize_text_field($input['default_icon'] ?? 'dashicons-admin-home');
         $sanitized['submenu_indicator'] = sanitize_text_field($input['submenu_indicator'] ?? 'chevron-down');
+        
+        // URL values
+        $sanitized['logo_image'] = esc_url_raw($input['logo_image'] ?? '');
         
         // Array values
         $sanitized['selected_menus'] = isset($input['selected_menus']) && is_array($input['selected_menus'])

@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: MobileMenu
- * Plugin URI: https://github.com/tachukadi/MobileMenu
+ * Plugin URI: https://github.com/tachukadi/mobilemenu
  * Description: A modern, animated, mobile-only navigation menu with extensive customization options
- * Version: 1.0.0
+ * Version: 1.0.5
  * Requires at least: 5.8
  * Requires PHP: 8.2
  * Author: Sachin Solanki

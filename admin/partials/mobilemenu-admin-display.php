@@ -203,6 +203,27 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                                     <?php _e('Right of Text', 'mobilemenu'); ?>
                                 </option>
                             </select>
+                            <p class="description"><?php _e('Horizontal position of icon relative to text.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="icon_vertical_position"><?php _e('Icon Vertical Position', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <select name="mobilemenu_settings[icon_vertical_position]" id="icon_vertical_position">
+                                <option value="top" <?php selected($settings['icon_vertical_position'] ?? 'center', 'top'); ?>>
+                                    <?php _e('Top', 'mobilemenu'); ?>
+                                </option>
+                                <option value="center" <?php selected($settings['icon_vertical_position'] ?? 'center', 'center'); ?>>
+                                    <?php _e('Center', 'mobilemenu'); ?>
+                                </option>
+                                <option value="bottom" <?php selected($settings['icon_vertical_position'] ?? 'center', 'bottom'); ?>>
+                                    <?php _e('Bottom', 'mobilemenu'); ?>
+                                </option>
+                            </select>
+                            <p class="description"><?php _e('Vertical alignment of icon when positioned left or right.', 'mobilemenu'); ?></p>
                         </td>
                     </tr>
                     
@@ -409,6 +430,52 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                 <table class="form-table">
                     <tr>
                         <th scope="row" colspan="2">
+                            <h3><?php _e('Logo', 'mobilemenu'); ?></h3>
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="logo_image"><?php _e('Logo Image', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text" name="mobilemenu_settings[logo_image]" 
+                                id="logo_image" 
+                                value="<?php echo esc_url($settings['logo_image'] ?? ''); ?>" 
+                                class="regular-text">
+                            <button type="button" class="button" id="mobilemenu-upload-logo">
+                                <?php _e('Upload Logo', 'mobilemenu'); ?>
+                            </button>
+                            <button type="button" class="button" id="mobilemenu-remove-logo">
+                                <?php _e('Remove', 'mobilemenu'); ?>
+                            </button>
+                            <p class="description"><?php _e('Upload a logo to display at the top of the mobile menu. Leave empty to hide.', 'mobilemenu'); ?></p>
+                            <?php if (!empty($settings['logo_image'])) : ?>
+                                <div id="logo-preview" style="margin-top: 10px;">
+                                    <img src="<?php echo esc_url($settings['logo_image']); ?>" 
+                                        style="max-width: 150px; height: auto; display: block;">
+                                </div>
+                            <?php else : ?>
+                                <div id="logo-preview" style="display: none; margin-top: 10px;"></div>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="logo_width"><?php _e('Logo Width (px)', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <input type="number" name="mobilemenu_settings[logo_width]" 
+                                id="logo_width" 
+                                value="<?php echo esc_attr($settings['logo_width'] ?? 150); ?>" 
+                                min="50" max="300" class="small-text">
+                            <p class="description"><?php _e('Maximum width of the logo image.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row" colspan="2">
                             <h3><?php _e('Hamburger Icon', 'mobilemenu'); ?></h3>
                         </th>
                     </tr>
@@ -441,6 +508,26 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                         <th scope="row" colspan="2">
                             <h3><?php _e('Menu Appearance', 'mobilemenu'); ?></h3>
                         </th>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="menu_alignment"><?php _e('Menu Alignment', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <select name="mobilemenu_settings[menu_alignment]" id="menu_alignment">
+                                <option value="left" <?php selected($settings['menu_alignment'] ?? 'center', 'left'); ?>>
+                                    <?php _e('Left', 'mobilemenu'); ?>
+                                </option>
+                                <option value="center" <?php selected($settings['menu_alignment'] ?? 'center', 'center'); ?>>
+                                    <?php _e('Center', 'mobilemenu'); ?>
+                                </option>
+                                <option value="right" <?php selected($settings['menu_alignment'] ?? 'center', 'right'); ?>>
+                                    <?php _e('Right', 'mobilemenu'); ?>
+                                </option>
+                            </select>
+                            <p class="description"><?php _e('Text alignment for menu items.', 'mobilemenu'); ?></p>
+                        </td>
                     </tr>
                     
                     <tr>
@@ -485,6 +572,32 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                     
                     <tr>
                         <th scope="row">
+                            <label for="menu_link_color"><?php _e('Link Color', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text" name="mobilemenu_settings[menu_link_color]" 
+                                id="menu_link_color" 
+                                value="<?php echo esc_attr($settings['menu_link_color'] ?? '#ffffff'); ?>" 
+                                class="mobilemenu-color-picker">
+                            <p class="description"><?php _e('Color for menu item links.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="menu_link_hover_color"><?php _e('Link Hover Color', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text" name="mobilemenu_settings[menu_link_hover_color]" 
+                                id="menu_link_hover_color" 
+                                value="<?php echo esc_attr($settings['menu_link_hover_color'] ?? '#ffffff'); ?>" 
+                                class="mobilemenu-color-picker">
+                            <p class="description"><?php _e('Color for menu item links on hover.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
                             <label for="menu_icon_color"><?php _e('Icon Color', 'mobilemenu'); ?></label>
                         </th>
                         <td>
@@ -507,6 +620,32 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                             <p class="description"><?php _e('Font size for menu items.', 'mobilemenu'); ?></p>
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <th scope="row" colspan="2">
+                            <h3><?php _e('Icon Settings', 'mobilemenu'); ?></h3>
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">
+                            <label for="icon_vertical_position"><?php _e('Icon Vertical Position', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <select name="mobilemenu_settings[icon_vertical_position]" id="icon_vertical_position">
+                                <option value="top" <?php selected($settings['icon_vertical_position'] ?? 'center', 'top'); ?>>
+                                    <?php _e('Top', 'mobilemenu'); ?>
+                                </option>
+                                <option value="center" <?php selected($settings['icon_vertical_position'] ?? 'center', 'center'); ?>>
+                                    <?php _e('Center (Default)', 'mobilemenu'); ?>
+                                </option>
+                                <option value="bottom" <?php selected($settings['icon_vertical_position'] ?? 'center', 'bottom'); ?>>
+                                    <?php _e('Bottom', 'mobilemenu'); ?>
+                                </option>
+                            </select>
+                            <p class="description"><?php _e('Vertical alignment of icons relative to text.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
                 </table>
             </div>
             
@@ -515,6 +654,21 @@ $menu_icons = get_option('mobilemenu_menu_icons', []);
                 <h2><?php _e('Menu Behavior', 'mobilemenu'); ?></h2>
                 
                 <table class="form-table">
+                    <tr>
+                        <th scope="row">
+                            <label for="open_submenus_by_default"><?php _e('Open Submenus by Default', 'mobilemenu'); ?></label>
+                        </th>
+                        <td>
+                            <label class="mobilemenu-switch">
+                                <input type="checkbox" name="mobilemenu_settings[open_submenus_by_default]" 
+                                    id="open_submenus_by_default" 
+                                    value="1" <?php checked($settings['open_submenus_by_default'] ?? false, true); ?>>
+                                <span class="mobilemenu-slider"></span>
+                            </label>
+                            <p class="description"><?php _e('Keep all submenus expanded by default when menu opens. When disabled, users must click parent items to expand submenus.', 'mobilemenu'); ?></p>
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <th scope="row">
                             <label for="show_close_button"><?php _e('Show Close Button', 'mobilemenu'); ?></label>

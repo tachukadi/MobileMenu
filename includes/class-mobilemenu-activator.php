@@ -28,9 +28,15 @@ class MobileMenu_Activator {
             'menu_bg_color' => '#00bcd4',
             'menu_bg_gradient' => '',
             'menu_text_color' => '#ffffff',
+            'menu_link_color' => '#ffffff',
+            'menu_link_hover_color' => '#ffffff',
             'menu_icon_color' => '#ffffff',
             'menu_font_size' => 18,
             'icon_position' => 'above',
+            'icon_vertical_position' => 'center',
+            'menu_alignment' => 'center',
+            'logo_image' => '',
+            'logo_width' => 150,
             'open_animation' => 'slide-left',
             'close_animation' => 'slide-left',
             'submenu_animation' => 'accordion',
@@ -44,6 +50,7 @@ class MobileMenu_Activator {
             'default_icon_type' => 'dashicons',
             'default_icon' => 'dashicons-admin-home',
             'submenu_indicator' => 'chevron-down',
+            'open_submenus_by_default' => false,
         ];
         
         if (!get_option('mobilemenu_settings')) {

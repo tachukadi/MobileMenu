@@ -83,6 +83,7 @@
             this.initFormSubmit();
             this.initIconPicker();
             this.initSVGUploader();
+            this.initLogoUploader();
         },
         
         /**
@@ -405,6 +406,106 @@
                 } else {
                     alert('Please enter valid SVG code.');
                 }
+            });
+        },
+        
+        /**
+         * Initialize logo uploader
+         */
+        initLogoUploader: function() {
+            let logoUploader;
+            
+            // Logo upload button
+            $('.mobilemenu-logo-upload-btn').on('click', function(e) {
+                e.preventDefault();
+                
+                if (logoUploader) {
+                    logoUploader.open();
+                    return;
+                }
+                
+                logoUploader = wp.media({
+                    title: 'Select Logo',
+                    button: {
+                        text: 'Use this image'
+                    },
+                    library: {
+                        type: 'image'
+                    },
+                    multiple: false
+                });
+                
+                logoUploader.on('select', function() {
+                    const attachment = logoUploader.state().get('selection').first().toJSON();
+                    
+                    // Update hidden field
+                    $('#logo_image').val(attachment.url);
+                    
+                    // Update preview
+                    $('.mobilemenu-logo-preview').html(
+                        '<img src="' + attachment.url + '" style="max-width: 200px; max-height: 100px; display: block;" alt="Menu Logo">'
+                    );
+                    
+                    // Show remove button
+                    $('.mobilemenu-logo-remove-btn').show();
+                });
+                
+                logoUploader.open();
+            });
+            
+            // Logo remove button
+            $('.mobilemenu-logo-remove-btn').on('click', function(e) {
+                e.preventDefault();
+                
+                // Clear hidden field
+                $('#logo_image').val('');
+                
+                // Clear preview
+                $('.mobilemenu-logo-preview').html('<p class="description">No logo uploaded</p>');
+                
+                // Hide remove button
+                $(this).hide();
+            });
+        },
+        
+        /**
+         * Initialize logo uploader
+         */
+        initLogoUploader: function() {
+            let logoUploader;
+            
+            $('#mobilemenu-upload-logo').on('click', function(e) {
+                e.preventDefault();
+                
+                if (logoUploader) {
+                    logoUploader.open();
+                    return;
+                }
+                
+                logoUploader = wp.media({
+                    title: 'Select Logo',
+                    button: {
+                        text: 'Use this image'
+                    },
+                    library: {
+                        type: 'image'
+                    },
+                    multiple: false
+                });
+                
+                logoUploader.on('select', function() {
+                    const attachment = logoUploader.state().get('selection').first().toJSON();
+                    $('#logo_image').val(attachment.url);
+                    $('#logo-preview').html('<img src="' + attachment.url + '" style="max-width: 150px; height: auto; display: block;">').show();
+                });
+                
+                logoUploader.open();
+            });
+            
+            $('#mobilemenu-remove-logo').on('click', function(e) {
+                e.preventDefault();
+                $('#logo_image').val('');
+                $('#logo-preview').hide().html('');
             });
         }
     };
